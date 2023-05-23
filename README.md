@@ -1,17 +1,17 @@
 # DowntimeDetector
 Downtime detector for URLs and IP addresses using AWS Services. 
 
-# This solution sets up a monitoring system on AWS for checking the uptime of a specific URL. The system works in the following way: 
+This solution sets up a monitoring system on AWS for checking the uptime of a specific URL. The system works in the following way: 
 
-# An AWS Lambda function is created, which sends a GET request to the URL you want to monitor. This function is scheduled to be invoked periodically (like every 5 minutes) by a CloudWatch Events rule. If the URL is down (the HTTP status code of the response is not 200), the Lambda function publishes a message to an SNS Topic. The message contains the status code of the failed GET request and indicates that the URL is down.
+An AWS Lambda function is created, which sends a GET request to the URL you want to monitor. This function is scheduled to be invoked periodically (like every 5 minutes) by a CloudWatch Events rule. If the URL is down (the HTTP status code of the response is not 200), the Lambda function publishes a message to an SNS Topic. The message contains the status code of the failed GET request and indicates that the URL is down.
 
-# An Amazon SNS (Simple Notification Service) Topic is used to send this message to all its subscribers. In this case, the subscriber is an email address. When the SNS topic receives the message from the Lambda function, it immediately sends an email to the subscribed email address. The email contains the message published to the SNS topic, indicating that the monitored URL is down.
+An Amazon SNS (Simple Notification Service) Topic is used to send this message to all its subscribers. In this case, the subscriber is an email address. When the SNS topic receives the message from the Lambda function, it immediately sends an email to the subscribed email address. The email contains the message published to the SNS topic, indicating that the monitored URL is down.
 
-# In this way, this solution constantly monitors the URL and immediately alerts you via email if the URL goes down. This allows you to quickly react to downtime and take necessary actions to restore service.
+In this way, this solution constantly monitors the URL and immediately alerts you via email if the URL goes down. This allows you to quickly react to downtime and take necessary actions to restore service.
 
-# These instructions are designed to used AWS CloudShell, but you can also use this in their own terminal using the AWS CLI 
+These instructions are designed to used AWS CloudShell, but you can also use this in their own terminal using the AWS CLI 
 
-# optional testing steps: deploy the cloudformation template which gives you a simple website - edit the hosted zoneid to reflect your own DNS name (if you do not have a hosted zone, you can use the EC2 instances IP address)
+optional testing steps: deploy the cloudformation template which gives you a simple website - edit the hosted zoneid to reflect your own DNS name (if you do not have a hosted zone, you can use the EC2 instances IP address)
 
 - create an s3 bucket in which to upload the website files to 
 
