@@ -162,3 +162,29 @@ Deploy the cloudformation template which gives you a simple website - edit the h
     aws iam detach-role-policy --role-name DowntimeLambdaRole --policy-arn $POLICYARN
     aws iam delete-role --role-name DowntimeLambdaRole
     ```
+
+
+## Cost Estimation
+
+The main services utilized in the Downtime Detector solution include AWS Lambda, Amazon SNS, and Amazon CloudWatch. Pricing can vary by region and over time, but as of my knowledge cutoff in September 2021, here are the relevant details:
+
+### AWS Lambda 
+
+AWS Lambda is billed on the number of requests and the time your code executes. AWS Lambda offers 1 million free requests per month and up to 3.2 million seconds of compute time per month, depending on the amount of memory allocated to your function. If your function is invoked every 5 minutes, that's about 8,640 invocations in a 30-day month. If each execution takes less than a second and uses less than 128 MB of memory, you would remain within the free tier.
+
+### Amazon SNS 
+
+Amazon SNS offers the first 1 million Amazon SNS requests for free. After the free tier, it is $0.50 per million SNS requests. You would only exceed the free tier if your URL goes down more than 1 million times per month.
+
+### Amazon CloudWatch 
+
+Amazon CloudWatch is used to trigger your Lambda function. There is a cost associated with CloudWatch Events/EventBridge, but the first 1,000,000 events are free, then $1.00 per million events thereafter. If you're triggering your function every 5 minutes, you would use about 8,640 events per month, which is well within the free tier.
+
+For moderate usage, the solution should largely fall within the AWS Free Tier. If your usage exceeds the quantities provided in the free tier, or if you have already exhausted your free tier limits, you would then start to incur costs.
+
+Also remember that costs can be higher if you're using this system to monitor multiple URLs, as that would increase the number of Lambda function invocations, SNS messages, and CloudWatch Events.
+
+Please consult the AWS Pricing page for up-to-date information and to use the AWS Pricing Calculator for a more accurate cost estimate based on your specific use case.
+
+These estimates do not include optional test resources like EC2 instances, S3 storage costs, or data transfer costs. Always review the full pricing details on the AWS official website for all services used to understand all possible charges.
+
