@@ -166,7 +166,7 @@ Deploy the cloudformation template which gives you a simple website - edit the h
 
 ## Cost Estimation
 
-The main services utilized in the Downtime Detector solution include AWS Lambda, Amazon SNS, and Amazon CloudWatch. Pricing can vary by region and over time, but as of my knowledge cutoff in September 2021, here are the relevant details:
+The main services utilized in the Downtime Detector solution include AWS Lambda, Amazon SNS, and Amazon CloudWatch. Pricing can vary by region and over time, however here are the relevant details:
 
 ### AWS Lambda 
 
